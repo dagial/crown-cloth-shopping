@@ -1,6 +1,6 @@
 import {Outlet,Link} from 'react-router-dom'
 import {Fragment} from 'react'
-import {ReactComponent as CrwnLogo} from "../../../assets/crown.svg"
+import {ReactComponent as CrwnLogo} from "../../assets/crown.svg"
 import "./navigation.style.scss"
 const Navigation=()=>{
 
@@ -19,7 +19,7 @@ const Navigation=()=>{
 
         </Link>
         <Link className="nav-link" to="/contacts">
-            <div>Conatact</div>
+            <div>Contact</div>
         </Link>
         <Link className="nav-link" to="/sign-in">
             <div>SIGN IN</div>
