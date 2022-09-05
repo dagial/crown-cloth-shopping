@@ -1,10 +1,11 @@
-import {useState} from 'react'
-import {createAuthUserWithEmailAndPassword,
+import {useState,} from 'react'
+import {
         userDocumentFromAuth,signInWithGooglePopup,
         SignInUserWithEmailAndPassword} from "../../utils/firebase"
 import FormInput from '../Form/form'
 import Button from "../button/button"
 import "./sign-in-form.scss"
+import {UserContext} from "../../context/user.context"
 
 const defaultFormFields={
     email:'',
@@ -15,7 +16,8 @@ const defaultFormFields={
 
 const SignInForm=()=>{
     const [formFields,setFormFields]=useState(defaultFormFields)
-    const {email,password}=formFields
+    const {email,password}=formFields 
+    
     const logGoogleUser= async ()=>{
         const {user}=await signInWithGooglePopup()
         userDocumentFromAuth(user)
@@ -33,8 +35,7 @@ const SignInForm=()=>{
         const {email,password}=formFields
        
             try{
-            const response= await SignInUserWithEmailAndPassword(email,password)
-            console.log(response)
+            const {user}= await SignInUserWithEmailAndPassword(email,password)
         clearSignupForm()
     }
     catch(error){
@@ -55,7 +56,7 @@ const SignInForm=()=>{
         <div className="sign-up-container">
             <h2>Already have an Account?</h2>
             <span>Sign In with email and password</span>
-        <form onSubmit={submitHandler} id="signup-form">
+        <form onSubmit={submitHandler} id="signin-form">
     
          <FormInput label="Email" type="email" onChange={onchangeHandler} name="email" value={email} required/>
 

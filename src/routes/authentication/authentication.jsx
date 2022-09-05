@@ -15,10 +15,8 @@ const Authenticate=()=>{
     useEffect( ()=>{
        const response= async()=>{
         const res = await getRedirectResult(auth);
-        console.log(res)
         if (res){
             const {user}=res;
-            
             userDocumentFromAuth(user)
         }
         }
