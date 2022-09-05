@@ -3,6 +3,7 @@ import {createAuthUserWithEmailAndPassword,
         userDocumentFromAuth} from "../../utils/firebase"
 import FormInput from '../Form/form'
 import Button from "../button/button"
+import "./sign-up-form.scss"
 
 const deafultFormFields={
     displayName:'',
@@ -64,7 +65,7 @@ const SignUpForm=()=>{
          <FormInput label="Confirm Password" type="password" onChange={onchangeHandler} name="confirmPassword" value={confirmPassword} required/>
         {/* <label htmlFor="confirm Passowrd">Confirm Password</label>
         <input type="password" required name="confirmPassword" /> */}
-        <Button buttonType="" type='submit'>Sign In</Button>
+        <Button buttonType="" type='submit'>Sign Up</Button>
         </form>
 
 

@@ -21,7 +21,7 @@ const Navigation=()=>{
         <Link className="nav-link" to="/contacts">
             <div>Contact</div>
         </Link>
-        <Link className="nav-link" to="/sign-in">
+        <Link className="nav-link" to="/auth">
             <div>SIGN IN</div>
         </Link>
         </div>
