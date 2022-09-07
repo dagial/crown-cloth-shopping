@@ -16,8 +16,6 @@ export const UserProvider=({children})=>{
             userDocumentFromAuth(user)
         }
         setCurrentUser(user)
-
-        console.log(user)
  
     })
     
