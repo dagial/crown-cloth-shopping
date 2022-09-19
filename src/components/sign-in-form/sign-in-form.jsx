@@ -3,7 +3,7 @@ import {
         userDocumentFromAuth,signInWithGooglePopup,
         SignInUserWithEmailAndPassword} from "../../utils/firebase"
 import FormInput from '../Form/form'
-import Button from "../button/button"
+import Button,{BUTTON_TYPES} from "../button/button"
 import "./sign-in-form.scss"
 import {UserContext} from "../../context/user.context"
 
@@ -62,8 +62,8 @@ const SignInForm=()=>{
 
          <FormInput label="Password" type="password" onChange={onchangeHandler} name="password" value={password} required/>
       <div className="buttons-container">
-        <Button buttonType="" type='submit'>Sign In</Button>
-        <Button type='button' buttonType="google" onClick={logGoogleUser}>Google Sign In</Button>
+        <Button buttonType={BUTTON_TYPES.base} type='submit'>Sign In</Button>
+        <Button type='button' buttonType={BUTTON_TYPES.google} onClick={logGoogleUser}>Google Sign In</Button>
         </div>
         </form>
 
