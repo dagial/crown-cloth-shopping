@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect,useReducer } from 'react';
 import {createContext,useState} from 'react'
 
 const addCartItem=(cartItems,itemToAdd)=>{
@@ -49,12 +49,56 @@ export const ShopToggleContext=createContext({
     totalPrice:0,
 });
 
+export const CART_ACTION_TYPES={
+    TOGGLE_SHOP:"TOGGLE_SHOP",
+    ADD_ITEM_TO_CART:"ADD_ITEM_TO_CART",
+    CHANGE_COUNTER:"CHANGE_COUNTER",
+    CHANGE_TOTAL_PRICE:"CHANGE_TOTAL_PRICE"
+}
+const CART_INITIAL_STATE={
+    toggleShop:false,
+    cartItems:[],
+    cartCount:0,
+    totalPrice:0
+}
+
+const CartReducer=(state,action)=>{
+
+    const {type,payload}=action;
+    
+    switch(type){
+        case CART_ACTION_TYPES.TOGGLE_SHOP:
+            return{...state,toggleShop:!state.toggleShop};
+        case CART_ACTION_TYPES.ADD_ITEM_TO_CART:
+            return {...state,cartItems:payload}
+        case CART_ACTION_TYPES.CHANGE_COUNTER:
+            return {...state,cartCount:payload}
+        case CART_ACTION_TYPES.CHANGE_TOTAL_PRICE:
+            return {...state,totalPrice:payload}
+        default:
+            throw new Error(`Unhandled type ${type} in CartReducer`)
+    }
+
+}
 
 export const ShopToggleProvider=({children})=>{
-    const [toggleShop,setToggleShop]=useState(false)
-    const [cartItems,setCartItems]=useState([])
-    const [cartCount,setCartCount]=useState(0)
-    const [totalPrice,setTotalPrice]=useState(0)
+    const [state,dispatch]=useReducer(CartReducer,CART_INITIAL_STATE)
+    const {toggleShop,cartItems,cartCount,totalPrice}=state
+    //reducer functions
+    const setToggleShop=()=>{
+        dispatch({type:CART_ACTION_TYPES.TOGGLE_SHOP})
+    }
+    const setCartItems=(cartitems)=>{
+        dispatch({type:CART_ACTION_TYPES.ADD_ITEM_TO_CART,payload:cartitems})
+    }
+    const setCartCount=(cart_count)=>{
+        dispatch({type:CART_ACTION_TYPES.CHANGE_COUNTER,payload:cart_count})
+    }
+    const setTotalPrice=(price)=>{
+        dispatch({type:CART_ACTION_TYPES.CHANGE_TOTAL_PRICE,payload:price})
+    }
+
+    //setter help functions
     const addItemToCart=(productToAdd)=>{
         setCartItems(addCartItem(cartItems,productToAdd))
     }
