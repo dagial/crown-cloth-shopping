@@ -1,11 +1,16 @@
 import CheckOutListItem from "../../components/checkout-list/checkout-list-item" 
 import {useContext} from 'react'
-import { ShopToggleContext } from '../../context/shopToggle.context';
+import {useDispatch} from 'react-redux'
+
 import "./checkout.style.scss"
+import { useSelector } from "react-redux";
+import { cartItemsSelector,cartTotalSelector } from "../../store/cart/cart-selectors";
+
 
 const CheckOut=()=>{
-    const {cartItems,totalPrice,setToggleShop}=useContext(ShopToggleContext)
-    
+
+    const cartItems=useSelector(cartItemsSelector)
+    const totalPrice=useSelector(cartTotalSelector)
     return(
             <div className="checkout-container">
                         <div className="checkout-header">

@@ -1,18 +1,18 @@
 import {Outlet,Link} from 'react-router-dom'
 import {Fragment,useContext} from 'react'
-import {UserContext} from "../../context/user.context"
 import { signOutUser } from '../../utils/firebase'
 import CartIcon from '../../components/cart-icon/cart-icon'
 import {ReactComponent as CrwnLogo} from "../../assets/crown.svg"
 import CartDropdown from '../../components/cart-dropdown/cart-dropdown'
-import { ShopToggleContext } from '../../context/shopToggle.context'
-
 import {NavigationContainer,LogoContainer,NavLinkContainer,NavLink} from "./navigation.style.jsx"
 
+import { useSelector } from 'react-redux'
 
 const Navigation=()=>{
-    const {currentUser}=useContext(UserContext)
-    const {toggleShop}=useContext(ShopToggleContext)
+
+    const currentUser=useSelector((state)=>state.user.currentUser)
+    const toggleShop=useSelector((state)=>state.cart.toggleShop)
+    
     const handleSignOut=async ()=>{
         await signOutUser()
 

@@ -48,9 +48,6 @@ const firebaseConfig = {
 
     const userDocRef= doc(db,'user',userAuth.uid)
     const userSnapshot= await getDoc(userDocRef);
-    console.log("userDocRef")
-    console.log({userDocRef})
-    
     if(!userSnapshot.exists()){
         const {displayName, email}=userAuth
         const createdAt= new Date()
@@ -105,11 +102,6 @@ const firebaseConfig = {
     const collectionRef=collection(db,'categories')
     const q=query(collectionRef)
     const querySnapshot= await getDocs(q)
-    const categoryMap=querySnapshot.docs.reduce((acc,docSnapshot)=>{
-      const {title,items}=docSnapshot.data();
-      acc[title.toLowerCase()]=items;
-      return acc
-    },{})
+    return querySnapshot.docs.map(docSnapShot=>docSnapShot.data())
 
-    return categoryMap
   }

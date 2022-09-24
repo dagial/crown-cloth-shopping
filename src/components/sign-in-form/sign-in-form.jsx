@@ -4,8 +4,7 @@ import {
         SignInUserWithEmailAndPassword} from "../../utils/firebase"
 import FormInput from '../Form/form'
 import Button,{BUTTON_TYPES} from "../button/button"
-import "./sign-in-form.scss"
-import {UserContext} from "../../context/user.context"
+import "./sign-in-form.scss" 
 
 const defaultFormFields={
     email:'',
